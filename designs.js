@@ -1,3 +1,4 @@
+/* global $ */
 /**
 APP: Pixel Art Maker
 User Stories:
@@ -9,14 +10,22 @@ Project Objectives
 1. Implement the makeGrid() function that dynamically creates a grid that the user can interact with.
 **/
 
-// Select color input
+$(document).ready(function() {
+    
+    // Select color input
 
-// Select size input
+    // Select size input
+    
 
-// When size is submitted by the user, call makeGrid()
+    // When size is submitted by the user, call makeGrid()
+    
+    function makeGrid() {
+    
+    // Your code goes here!
+    
+    }
+    
+});
 
-function makeGrid() {
 
-// Your code goes here!
 
-}
