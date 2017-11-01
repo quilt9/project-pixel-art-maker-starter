@@ -18,12 +18,13 @@ Project Tasks
 **/
 
 $(document).ready(function() {
-    
+'use strict'; 
     // Select color input
 
     // Select size input
     // The event handler bound to #sizePicker
-    $(':submit').on('click', function(e){
+    $('#sizePicker').on('submit', function(e){
+        e.preventDefault();
         let heightNum = $('#input_height').val();
         let widthNum = $('#input_width').val();
         makeGrid(heightNum, widthNum);
@@ -32,13 +33,32 @@ $(document).ready(function() {
     // When size is submitted by the user, call makeGrid()
     // Your code goes here!
     function makeGrid(heightNum, widthNum) {
+        // Delete the exsiting grid
+        clearGrid();
         let rowNum = parseInt(heightNum);
         let colNum = parseInt(widthNum);
+        const oneCol = '<td></td>';
+        // Initialize first row after user click submit
+        $('#pixel_canvas').append('<tr></tr>');
         // Create rows based on numRow
-        for(let i = 1; i <= rowNum; i++) {
-             // What needs to happen to create the table columns and rows
-            $('#pixel_canvas').append('<tr><td>i+1</td></tr>');
+        for(let i = 1; i <= widthNum; i++) {
+             // Add the number of columns based on the input
+            $('tr:last-child').append(oneCol);
         }
+        for(let i = 2; i <= rowNum; i++) {
+            // Add the number of rows based on the input
+            $('tr:last-child').clone().appendTo('#pixel_canvas');
+        }
+    }
+    
+    // Clear existing grid when user submit different inputs for height and width
+    function clearGrid() {
+        // Set the height and width inputs back to 1
+        $('#input_height').val(1);
+        $('#input_width').val(1);
+        // Clear the content in #pixel_canvas
+        $('#pixel_canvas').empty();
+        
     }
    
 });
