@@ -20,6 +20,11 @@ Project Tasks
 $(document).ready(function() {
 'use strict'; 
     // Select color input
+    $('#colorPicker').on('click', function(e) {
+       let colorNum = $('#colorPicker').val();
+       addColorToSquare(colorNum);
+    });
+    
 
     // Select size input
     // The event handler bound to #sizePicker
@@ -50,6 +55,7 @@ $(document).ready(function() {
             $('tr:last-child').clone().appendTo('#pixel_canvas');
         }
     }
+
     
     // Clear existing grid when user submit different inputs for height and width
     function clearGrid() {
@@ -59,6 +65,15 @@ $(document).ready(function() {
         // Clear the content in #pixel_canvas
         $('#pixel_canvas').empty();
         
+    }
+    
+    // Add event to listen for click event to table cell
+    function addColorToSquare(colorNum) {
+        // Listen when a square is clicked
+        $('#pixel_canvas').on('click', 'td', function(e) {
+            $(this).css('background-color', colorNum);
+            e.stopPropagation();
+        });
     }
    
 });
