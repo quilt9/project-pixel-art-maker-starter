@@ -16,13 +16,12 @@ Project Tasks
 2. Listen for keypress event.
 3. Insert the number of columns and rows based on the value of the inputs.
 **/
+$(document).ready(function () {
+    'use strict';
 
-$(document).ready(function() {
-'use strict'; 
-   
     // Select size input
     // The event handler bound to #sizePicker
-    $('#sizePicker').on('submit', function(e){
+    $('#sizePicker').on('submit', function (e) {
         e.preventDefault();
         let heightNum = $('#input_height').val();
         let widthNum = $('#input_width').val();
@@ -40,16 +39,16 @@ $(document).ready(function() {
         // Initialize first row after user click submit
         $('#pixel_canvas').append('<tr></tr>');
         // Create rows based on numRow
-        for(let i = 1; i <= widthNum; i++) {
-             // Add the number of columns based on the input
+        for (let i = 1; i <= widthNum; i++) {
+            // Add the number of columns based on the input
             $('tr:last-child').append(oneCol);
         }
-        for(let i = 2; i <= rowNum; i++) {
+        for (let i = 2; i <= rowNum; i++) {
             // Add the number of rows based on the input
             $('tr:last-child').clone().appendTo('#pixel_canvas');
         }
     }
-    
+
     // Clear existing grid when user submit different inputs for height and width
     function clearGrid() {
         // Set the height and width inputs back to 1
@@ -57,18 +56,16 @@ $(document).ready(function() {
         $('#input_width').val(1);
         // Clear the content in #pixel_canvas
         $('#pixel_canvas').empty();
-        
+
     }
-    
-     // Select color input
+
+    // Select color input
     // Listen when a square is clicked
-    $('#pixel_canvas').on('mouseover', 'td', function(e) {
+    // TODO: add other modes of painting the squares such as mouseover or selecting a number of cells than apply colour
+    $('#pixel_canvas').on('click', 'td', function (e) {
         let colorNum = $('#colorPicker').val();
         $(this).css('background-color', colorNum);
         e.stopPropagation();
     });
-    
+
 });
-
-
-
